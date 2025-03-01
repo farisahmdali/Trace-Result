@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Result Portal</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Montserrat", sans-serif;
+      }
+      body {
+        min-height: 100vh;
+        background: #f8f8f8;
+      }
+      .header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, #642c61 60%, #2e272b);
+        color: white;
+        padding: 2rem;
+        position: relative;
+        overflow: hidden;
+      }
+      .header::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 100%;
+        height: 5px;
+        background: linear-gradient(90deg, #642c61, #2e272b);
+      }
+      .institution-name {
+        font-size: 32px;
+        font-weight: 700;
+        margin-bottom: 5px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+      }
+      .institution-quote {
+        font-size: 16px;
+        color: rgba(255, 255, 255, 0.9);
+        font-weight: 500;
+        letter-spacing: 3px;
+        margin-bottom: 10px;
+        font-style: italic;
+      }
+      .portal-name {
+        font-size: 18px;
+        color: rgba(255, 255, 255, 0.9);
+        font-weight: 500;
+        margin-top: 5px;
+      }
+      .container {
+        max-width: 600px;
+        margin: 40px auto;
+        padding: 40px;
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(100, 44, 97, 0.1);
+        position: relative;
+        overflow: hidden;
+      }
+      .container::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 5px;
+        background: linear-gradient(90deg, #642c61, #2e272b);
+      }
+      h2 {
+        color: #642c61;
+        margin-bottom: 30px;
+        text-align: center;
+        font-size: 24px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+      .search-form {
+        background: linear-gradient(135deg, #f8f8f8 0%, #fff 100%);
+        padding: 30px;
+        border-radius: 12px;
+        border: 1px solid rgba(46, 39, 43, 0.1);
+      }
+      .form-group {
+        margin-bottom: 20px;
+      }
+      label {
+        display: block;
+        margin-bottom: 10px;
+        color: #2e272b;
+        font-weight: 600;
+        font-size: 14px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+      input {
+        width: 100%;
+        padding: 15px;
+        border: 2px solid rgba(46, 39, 43, 0.1);
+        border-radius: 8px;
+        font-size: 16px;
+        transition: all 0.3s ease;
+        background: white;
+      }
+      input:focus {
+        outline: none;
+        border-color: #642c61;
+        box-shadow: 0 0 0 3px rgba(100, 44, 97, 0.1);
+      }
+      button {
+        width: 100%;
+        padding: 15px;
+        background: linear-gradient(135deg, #642c61 0%, #2e272b 100%);
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+      button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(100, 44, 97, 0.3);
+      }
+      .footer {
+        text-align: center;
+        padding: 20px;
+        color: #2e272b;
+        font-size: 14px;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        background: white;
+        border-top: 1px solid rgba(46, 39, 43, 0.1);
+      }
+      .error-message {
+        color: #721c24;
+        background: linear-gradient(135deg, #ffebee 0%, #fff 100%);
+        padding: 15px 20px;
+        border-radius: 8px;
+        text-align: center;
+        margin-bottom: 20px;
+        border: 1px solid rgba(114, 28, 36, 0.1);
+        font-weight: 500;
+        display: none;
+        animation: slideDown 0.3s ease;
+      }
+      .error-message.show {
+        display: block;
+      }
+      .error-message.hide {
+        animation: slideUp 0.3s ease forwards;
+      }
+      @keyframes slideDown {
+        from {
+          transform: translateY(-10px);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+      @keyframes slideUp {
+        from {
+          transform: translateY(0);
+          opacity: 1;
+        }
+        to {
+          transform: translateY(-10px);
+          opacity: 0;
+        }
+      }
+      .form-group.error input {
+        border-color: #dc3545;
+      }
+      .form-group.error .error-text {
+        color: #dc3545;
+        font-size: 12px;
+        margin-top: 5px;
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <div class="institution-name">TRACE</div>
+      <div class="institution-quote">MANIFEST YOUR DESIRES</div>
+      <div class="portal-name">Student Result Portal</div>
+    </div>
+
+    <div class="container">
+      <h2>Student Result Search</h2>
+      <% if (typeof error !== 'undefined' && error) { %>
+      <div class="error-message show" id="errorMessage"><%= error %></div>
+      <% } %>
+      <div class="search-form">
+        <form
+          action="/students"
+          method="POST"
+          onsubmit="return validateForm(event)"
+        >
+          <div class="form-group" id="registerNumberGroup">
+            <label for="registerNumber">Register Number</label>
+            <input
+              type="text"
+              id="registerNumber"
+              name="registerNumber"
+              placeholder="Enter your register number"
+              maxlength="20"
+              required
+            />
+            <span class="error-text"></span>
+          </div>
+          <button type="submit">View Result</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="footer">© 2025 Trace. All rights reserved.</div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const errorMessage = document.getElementById("errorMessage");
+        if (errorMessage) {
+          setTimeout(() => {
+            errorMessage.classList.add("hide");
+            setTimeout(() => {
+              errorMessage.style.display = "none";
+            }, 300); // Match this with animation duration
+          }, 3000); // Message will show for 3 seconds
+        }
+      });
+
+      function validateForm(event) {
+        const registerNumber = document
+          .getElementById("registerNumber")
+          .value.trim();
+        const registerNumberGroup = document.getElementById(
+          "registerNumberGroup"
+        );
+        const errorText = registerNumberGroup.querySelector(".error-text");
+
+        // Reset previous errors
+        registerNumberGroup.classList.remove("error");
+        errorText.textContent = "";
+
+        // Validation rules
+        if (!registerNumber) {
+          showError("Register number is required");
+          return false;
+        }
+
+        if (!/^\d+$/.test(registerNumber)) {
+          showError("Register number must contain only numbers");
+          return false;
+        }
+
+        // if (registerNumber.length < 5) {
+        //   showError("Register number must be at least 5 digits");
+        //   return false;
+        // }
+
+        return true;
+
+        function showError(message) {
+          registerNumberGroup.classList.add("error");
+          errorText.textContent = message;
+          event.preventDefault();
+        }
+      }
+    </script>
+  </body>
+</html>
